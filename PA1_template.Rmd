@@ -26,7 +26,7 @@ sum(is.na(data$steps))
 ```
 Last row is number of NA Values in steps column  
 Let's group by date and summarize steps to build a histogram
-```{r "Building a Histogram"}
+```{r "Building_a_Histogram"}
 summarized<-data%>%group_by(date)%>%na.omit()%>%summarise(sum(steps))
 ggplot(summarized, aes(date,`sum(steps)`))+geom_bar(stat = "identity")+coord_flip()+labs(y = "Summary steps", x = "Date")
 ```
@@ -42,7 +42,7 @@ median(summarized$`sum(steps)`)
 ```
 4. Building a Time-Series plot of average steps taken by day  
 For that we use aggregate function first, to average steps on interval, then build time-series plot, and find max value
-```{r "Time Seres plot"}
+```{r "Time_Seres_plot"}
 Time_series<-aggregate(data$steps,list(interval = data$interval),mean, na.rm = TRUE)
 with(Time_series,plot(interval,x,type = "l",main = "Time-Series plot of number of steps by interval",xlab = "Interval",ylab = "Number Of Steps"))
 ```
@@ -76,7 +76,7 @@ After that we neeed to recalculate summarized for our filled data frame:
 summarized_fill<-data%>%group_by(date)%>%summarise(sum(steps))
 ```
 And build new histogram:
-```{r "Building a new histogram"}
+```{r "Building_a_new_histogram"}
 ggplot(summarized_fill, aes(date,`sum(steps)`))+geom_bar(stat = "identity")+coord_flip()+labs(y = "Summary steps", x = "Date")
 ```
 
@@ -104,7 +104,7 @@ TS_Weekend<-aggregate(steps~interval,data = subset(data,weekday == "weekend"),me
 ```
 
 After that we need to plot the graphs with base plotting system, cause in my opinion they more representative in this case
-```{r "Building Graphs"}
+```{r "Building_Graphs"}
 par(mfrow = c(2,1),mar = c(4,4,2,1),oma = c(0,0,2,0))
 with(TS_Weekday,plot(interval,steps,type = "l",main = "Time-Series plot of number of steps WeekDays",xlab = "Interval",ylab = "Number Of Steps"))
 with(TS_Weekend,plot(interval,steps,type = "l",main = "Time-Series plot of number of steps WeekEnd",xlab = "Interval",ylab = "Number Of Steps"))

@@ -75,7 +75,7 @@ summarized<-data%>%group_by(date)%>%na.omit()%>%summarise(sum(steps))
 ggplot(summarized, aes(date,`sum(steps)`))+geom_bar(stat = "identity")+coord_flip()+labs(y = "Summary steps", x = "Date")
 ```
 
-![plot of chunk Building a Histogram](figure/Building a Histogram-1.png)
+![plot of chunk Building_a_Histogram](figure/Building_a_Histogram-1.png)
 
 
 2. For building this Histogram, i'm inverted the axies, because otherwise, the dates on X-Axis will be unreadable
@@ -106,7 +106,7 @@ Time_series<-aggregate(data$steps,list(interval = data$interval),mean, na.rm = T
 with(Time_series,plot(interval,x,type = "l",main = "Time-Series plot of number of steps by interval",xlab = "Interval",ylab = "Number Of Steps"))
 ```
 
-![plot of chunk Time Seres plot](figure/Time Seres plot-1.png)
+![plot of chunk Time_Seres_plot](figure/Time_Seres_plot-1.png)
 
 5. For Finding maximum interval we could use simpe command which.max, since we interested only in interval, we could return only 1st element of this row
 
@@ -156,7 +156,7 @@ And build new histogram:
 ggplot(summarized_fill, aes(date,`sum(steps)`))+geom_bar(stat = "identity")+coord_flip()+labs(y = "Summary steps", x = "Date")
 ```
 
-![plot of chunk Building a new histogram](figure/Building a new histogram-1.png)
+![plot of chunk Building_a_new_histogram](figure/Building_a_new_histogram-1.png)
 
 After that lets recalculate new mean and median
 
@@ -165,7 +165,7 @@ mean(summarized_fill$`sum(steps)`)
 ```
 
 ```
-## [1] 10220.59
+## [1] 10237.87
 ```
 
 ```r
@@ -182,11 +182,6 @@ As wee see, mean and median number of steps change, it became smaller, may be be
 
 ```r
 data_weekday<-weekdays(as.Date(data$date,"%Y-%m-%d"))
-```
-
-```
-## Warning in strptime(x, format, tz = "GMT"): unknown timezone 'zone/tz/
-## 2017c.1.0/zoneinfo/Europe/Moscow'
 ```
 After that we can easily create Factor Variable with two levels based on separation:
 
@@ -209,4 +204,4 @@ with(TS_Weekday,plot(interval,steps,type = "l",main = "Time-Series plot of numbe
 with(TS_Weekend,plot(interval,steps,type = "l",main = "Time-Series plot of number of steps WeekEnd",xlab = "Interval",ylab = "Number Of Steps"))
 ```
 
-![plot of chunk Building Graphs](figure/Building Graphs-1.png)
+![plot of chunk Building_Graphs](figure/Building_Graphs-1.png)
